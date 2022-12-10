@@ -1,0 +1,199 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>Главная страница</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+
+    <table class="start" width="100%" height="100%">
+        <!--Шапка сайта-->
+        <tr height="20%">
+            <td width="20%" colspan="2">
+                <img src="css/pics/logo.png" alt="Логотип" title="Логотип" height="100px">
+            </td>
+            <td width="60%" colspan="3">
+                <a href="Index.html" style="font-size: 80px">Атриум</a>
+            </td>
+            <td width="20%" align="right">
+                <table width="100%" style="font-size: 15px;">
+                    <tr height="10%">
+                        <td width="20%"><p>Логин:</p></td>
+                        <td><input name="login" value="login" size="35"></td>
+                    </tr>
+
+                    <tr>
+                        <td width="20%"><p>Пароль:</p></td>
+                        <td><input type="password" value="password" size="35"></td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button style="margin:0px 10px" onclick="alert('Вход невозможен по техническим причинам :)')">Войти</button>
+                            <form action="registration.html">
+                                <button style="margin:0px 10px">Регистрация</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr height="40px" style="background-color: #1a1a1a">
+            <td colspan="7">
+                <table height="100%" width="100%">
+                    <tr>
+                        <td width="25%"><a href="https://atrium.su">Главная</a></td>
+                        <td width="25%"><a href="http://artriummoscow.com/">Подробнее</a></td>
+                        <td width="25%"><a href="https://vk.com/atriummoscow">Группа вк</a></td>
+                        <td width="25%"><a onclick="alert('А вы думали, мы вам поможем?')" href="">Техподдержка</a></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <!--Страницы-->
+            <td style="vertical-align: top; color: #fff; text-align: left; padding-left: 10px " height="100%" colspan="2">
+                <div>
+                    <h3><a href="Index.html">Главная</a></h3>
+                    <h3><a href="arts.html">Каталог</a></h3>
+                    <h3><a href="contacts.html">Контакты</a></h3>
+                    <form name="search" method="post" action="search.php">
+                        <input type="search" name="searchq" placeholder="Поиск">
+                        <button type="submit">Найти</button>
+                    </form>
+                </div>
+            </td>
+
+            <!--Основное-->
+            <td colspan="6" class="main">
+                <div class="container">
+                    <div class="flat-design-form">
+
+                        <div class="form-display show" id="login">
+                            <h1>Sign in?</h1>
+                            <form action="" method="post" novalidate="">
+                                <fieldset>
+                                    <ul>
+                                        <li>
+                                            <div class="item">
+                                                <input data-validate-length-range="6" name="name" placeholder="Username" required="required" type="text">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item">
+                                                <input data-validate-length-range="6" name="password" placeholder="Password" required='required' type="password">
+                                            </div>
+                                        </li>
+                                        <li><input class="button-login" type="submit" value="Login"></li>
+                                    </ul>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="form-display hide" id="register">
+                            <h1>Sign up?</h1>
+                            <form action="" method="post" novalidate="">
+                                <fieldset>
+                                    <ul>
+                                        <li>
+                                            <div class="item">
+                                                <input data-validate-length-range="6" name="name" placeholder="Username" required="required" type="text">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item">
+                                                <input data-validate-length="6,8" name="password" placeholder="Password" required='required' type="text">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item">
+                                                <input class='email' name="email" placeholder="Email" required="required" type="email">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="item">
+                                                <label><input name="url" placeholder="Website link" required="required" type="url"></label>
+                                            </div>
+                                        </li>
+                                        <li><input class="button-register" id='send' type="submit" value="Sign Up"></li>
+                                    </ul>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                        <script>
+                            validator.message['date'] = 'not a real date';
+                            // validate a field on "blur" event, a 'select' on 'change' event &amp; a '.reuired' classed multifield on 'keyup':
+                            $('form').on('blur', 'input[required], input.optional, select.required', validator.checkField).on('change', 'select.required', validator.checkField).on('keypress', 'input[required][pattern]', validator.keypress);
+                            $('.multi.required').on('keyup blur', 'input', function () {
+                                validator.checkField.apply($(this).siblings().last()[0]);
+                            });
+                            // bind the validation to the form submit event
+                            //$('#send').click('submit');//.prop('disabled', true);
+                            $('form').submit(function (e) {
+                                e.preventDefault();
+                                var submit = true;
+                                // evaluate the form using generic validaing
+                                if (!validator.checkAll($(this))) {
+                                    submit = false;
+                                }
+                                if (submit) this.submit();
+                                return false;
+                            });
+                        </script>
+
+                        <script>
+                            (function ($) {
+                                // constants
+                                var SHOW_CLASS = 'show',
+                                    HIDE_CLASS = 'hide',
+                                    ACTIVE_CLASS = 'active';
+                                $('.tabs').on('click', 'li a', function (e) {
+                                    e.preventDefault();
+                                    var $tab = $(this),
+                                        href = $tab.attr('href');
+                                    $('.active').removeClass(ACTIVE_CLASS);
+                                    $tab.addClass(ACTIVE_CLASS);
+                                    $('.show').removeClass(SHOW_CLASS).addClass(HIDE_CLASS).hide();
+                                    $(href).removeClass(HIDE_CLASS).addClass(SHOW_CLASS).hide().fadeIn(620);
+                                });
+                            })(jQuery);
+
+                        </script>
+
+</td>
+
+
+
+        </tr>
+
+
+    </table>
+
+
+    <footer style="background-color: #1a1a1a">
+        <div><br></div>
+        <p align="center">
+            Москва, м. Курская / м. Чкаловская, ул. Земляной вал, 33<br>
+            Большинство магазинов работает с 10:00 до 23:00<br>
+            Контактный телефон: +7(495) 970-15-55<br>
+        <p align="center" style="padding: 50px 0px">&#169; Все права защищены Москва 2022<p>
+    </footer>
+
+</body>
+
+
+</html>
